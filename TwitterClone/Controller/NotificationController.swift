@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NotificationController: UIViewController {
+final class NotificationController: UIViewController {
     
     // MARK: - Properties
     

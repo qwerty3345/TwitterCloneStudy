@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExploreController: UIViewController {
+final class ExploreController: UIViewController {
     
     // MARK: - Properties
     

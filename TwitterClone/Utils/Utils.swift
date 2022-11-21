@@ -52,3 +52,26 @@ struct Utils {
     }
     
 }
+
+class Timer {
+    static let shared = Timer()
+    
+    var time = CFAbsoluteTimeGetCurrent()
+    
+    func startTimer() {
+        self.time = CFAbsoluteTimeGetCurrent()
+    }
+
+    func endTimer() {
+        let durationTime = CFAbsoluteTimeGetCurrent() - time
+        print("경과 시간: \(durationTime)")
+    }
+
+}
+
+/// ⭐️ keyWindow를 구하기 위한 전역 변수 (keyWindow의 직접 접근이 deprecated 되었기 때문에)
+let keyWindow = UIApplication.shared.connectedScenes
+        .filter({$0.activationState == .foregroundActive})
+        .compactMap({$0 as? UIWindowScene})
+        .first?.windows
+        .filter({$0.isKeyWindow}).first

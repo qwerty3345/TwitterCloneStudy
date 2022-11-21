@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginController: UIViewController {
+final class LoginController: UIViewController {
 
     // MARK: - Properties
 
@@ -66,7 +66,14 @@ class LoginController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+//        print("### LoginController ViewDidLoad")
+        
         configureUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Timer.shared.endTimer()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -75,6 +82,7 @@ class LoginController: UIViewController {
 
     // MARK: - Actions
     
+    // 유저 로그인
     @objc func handleLogin() {
         guard let email = emailTextField.text else {
             emailContainerView.shake()
@@ -86,9 +94,21 @@ class LoginController: UIViewController {
             return
         }
         
-        print("로그인")
+        AuthService.loginUser(withEmail: email, password: password) { result, error in
+            if let error {
+                print("DEBUG: 로그인 에러 - \(error.localizedDescription)")
+                return
+            }
+            
+            // ⭐️ 로그인 완료 후 dismiss 하기 전에 configureUI를 실행.
+            guard let tab = keyWindow?.rootViewController as? MainTabController else { return }
+            tab.authenticateUserAndConfigureUI()
+            
+            self.dismiss(animated: true)
+        }
     }
     
+    // 회원가입 창으로 이동
     @objc func handleShowSignUp() {
         let vc = RegistrationController()
         navigationController?.pushViewController(vc, animated: true)

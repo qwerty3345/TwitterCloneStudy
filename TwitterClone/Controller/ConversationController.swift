@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ConversationController: UIViewController {
+final class ConversationController: UIViewController {
     
     // MARK: - Properties
     

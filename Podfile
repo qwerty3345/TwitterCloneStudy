@@ -10,5 +10,6 @@ target 'TwitterClone' do
   pod 'FirebaseAuth'
   pod 'FirebaseDatabase'
   pod 'FirebaseStorage'
+  pod 'SDWebImage'
 
 end

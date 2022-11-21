@@ -6,17 +6,27 @@
 //
 
 import UIKit
+import FirebaseAuth
 
-class MainTabController: UITabBarController {
+final class MainTabController: UITabBarController {
 
     // MARK: - Properties
+    
+    var user: User? {
+        didSet {
+            // ⭐️24강) MainTabController의 viewControllers 계층 구조 : 노션에 정리.
+            guard let nav = viewControllers?[0] as? UINavigationController else { return }
+            guard let feed = nav.viewControllers.first as? FeedController else { return }
+            feed.user = user
+        }
+    }
 
     let actionButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.backgroundColor = UIColor.twitterBlue
         button.setImage(UIImage(named: "new_tweet"), for: .normal)
-        button.addTarget(MainTabController.self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -24,22 +34,75 @@ class MainTabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Timer.shared.startTimer()
+        print("viewDidLoad")
+        view.backgroundColor = UIColor.twitterBlue
 
-        configureUI()
-        configureViewControllers()
-
+        authenticateUserAndConfigureUI()
     }
-    
+
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        AuthenticateUserAndConfigureUI()
+//    }
+
+
+    // MARK: - API
+
+    /// 유저 인증 및 UI 구성
+    func authenticateUserAndConfigureUI() {
+//        print("함수 시작")
+
+        // 유저 정보 존재 유무 확인
+        if Auth.auth().currentUser == nil {
+            //TODO: ⭐️ DispatchQueue 로 메인 스레드에서 비동기로 실행해야 하는 이유는? (19강)
+            DispatchQueue.main.async {
+//                print("###로그인체크: 새로운 뷰 호출")
+                let nav = UINavigationController(rootViewController: LoginController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true)
+//                print("###로그인체크: 새로운 뷰 호출 끝")
+            }
+
+
+        } else {
+            configureUI()
+            configureViewControllers()
+            fetchUser()
+//            print("DEBUG: 유저 정보 있음")
+        }
+//        print("함수 끝")
+    }
+
+    func fetchUser() {
+        UserService.fetchUser { user in
+            self.user = user
+        }
+    }
+
+    func userLogOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print("DEBUG: 유저 로그아웃 에러 \(error.localizedDescription)")
+        }
+    }
+
+
     // MARK: - Actions
-    
+
     @objc func actionButtonTapped() {
-        print("action")
+        guard let user else { return }
+        let nav = UINavigationController(rootViewController: UploadTweetController(user: user))
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
-    
+
 
     // MARK: - Helpers
 
     func configureUI() {
+        view.backgroundColor = .white
         tabBar.backgroundColor = .white.withAlphaComponent(0.5)
         tabBar.tintColor = UIColor.twitterBlue
 
@@ -47,6 +110,7 @@ class MainTabController: UITabBarController {
         actionButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,
             paddingBottom: 64, paddingRight: 16, width: 56, height: 56)
         actionButton.layer.cornerRadius = 56 / 2
+
 
     }
 

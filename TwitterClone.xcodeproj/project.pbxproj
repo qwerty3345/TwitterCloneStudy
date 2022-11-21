@@ -23,6 +23,11 @@
 		B423BF812928C0ED00B94D9A /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B423BF802928C0ED00B94D9A /* RegistrationController.swift */; };
 		B423BF832928CD7000B94D9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B423BF822928CD7000B94D9A /* GoogleService-Info.plist */; };
 		B423BF852928E28E00B94D9A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B423BF842928E28E00B94D9A /* Constants.swift */; };
+		B423BF8729291BC600B94D9A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B423BF8629291BC600B94D9A /* AuthService.swift */; };
+		B423BF89292A21EB00B94D9A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B423BF88292A21EB00B94D9A /* UserService.swift */; };
+		B423BF8B292A25F700B94D9A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B423BF8A292A25F700B94D9A /* User.swift */; };
+		B49E9F2D292BBD500092EC13 /* UploadTweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E9F2C292BBD500092EC13 /* UploadTweetController.swift */; };
+		B49E9F2F292BCB850092EC13 /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E9F2E292BCB850092EC13 /* CaptionTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +50,11 @@
 		B423BF802928C0ED00B94D9A /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		B423BF822928CD7000B94D9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B423BF842928E28E00B94D9A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B423BF8629291BC600B94D9A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		B423BF88292A21EB00B94D9A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		B423BF8A292A25F700B94D9A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B49E9F2C292BBD500092EC13 /* UploadTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetController.swift; sourceTree = "<group>"; };
+		B49E9F2E292BCB850092EC13 /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
 		F6E085AD6D35471BB377E886 /* Pods-TwitterClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClone.release.xcconfig"; path = "Target Support Files/Pods-TwitterClone/Pods-TwitterClone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +124,7 @@
 				B40A9BF22927C52000EDD72B /* ExploreController.swift */,
 				B40A9BF42927C52C00EDD72B /* NotificationController.swift */,
 				B40A9BF62927C54100EDD72B /* ConversationController.swift */,
+				B49E9F2C292BBD500092EC13 /* UploadTweetController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -121,6 +132,7 @@
 		B40A9BE92927C29D00EDD72B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B49E9F2E292BCB850092EC13 /* CaptionTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -128,6 +140,7 @@
 		B40A9BEA2927C2A300EDD72B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B423BF8A292A25F700B94D9A /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,6 +165,8 @@
 		B40A9BED2927C2CB00EDD72B /* API */ = {
 			isa = PBXGroup;
 			children = (
+				B423BF8629291BC600B94D9A /* AuthService.swift */,
+				B423BF88292A21EB00B94D9A /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -289,12 +304,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B423BF89292A21EB00B94D9A /* UserService.swift in Sources */,
 				B40A9BF52927C52C00EDD72B /* NotificationController.swift in Sources */,
+				B49E9F2F292BCB850092EC13 /* CaptionTextView.swift in Sources */,
 				B40A9BD52927C26D00EDD72B /* AppDelegate.swift in Sources */,
 				B40A9BF32927C52000EDD72B /* ExploreController.swift in Sources */,
 				B40A9BD72927C26D00EDD72B /* SceneDelegate.swift in Sources */,
 				B423BF7D2928872100B94D9A /* LoginController.swift in Sources */,
 				B423BF7F2928B1DC00B94D9A /* Utils.swift in Sources */,
+				B423BF8729291BC600B94D9A /* AuthService.swift in Sources */,
+				B49E9F2D292BBD500092EC13 /* UploadTweetController.swift in Sources */,
+				B423BF8B292A25F700B94D9A /* User.swift in Sources */,
 				B423BF812928C0ED00B94D9A /* RegistrationController.swift in Sources */,
 				B40A9BEF2927C3DC00EDD72B /* MainTabController.swift in Sources */,
 				B40A9BF72927C54100EDD72B /* ConversationController.swift in Sources */,

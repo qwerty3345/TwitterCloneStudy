@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 
-class RegistrationController: UIViewController {
+final class RegistrationController: UIViewController {
 
     // MARK: - Properties
 
@@ -102,14 +102,16 @@ class RegistrationController: UIViewController {
 
     // MARK: - Actions
 
+    // 로그인 창으로 이동
     @objc func handleShowSignIn() {
         navigationController?.popViewController(animated: true)
     }
 
+    // 유저 회원가입
     @objc func handleRegistration() {
 
         // 각 입력창의 값이 없으면 해당 View에 Shake 애니메이션 주고 Return.
-        guard let imageData = profileImage?.jpegData(compressionQuality: 0.3) else {
+        guard let profileImage else {
             plusPhotoButton.shake()
             return
         }
@@ -130,36 +132,15 @@ class RegistrationController: UIViewController {
             return
         }
 
-        let fileName = NSUUID().uuidString // 파일명을 위한 랜덤한 UUID String 생성
-        let storageRef = STORAGE_PROFILE_IMAGES.child(fileName)
 
-        //🔥 1. 프로필 사진 저장 (Firebase Storage)
-        storageRef.putData(imageData) { metadata, error in
-            // 업로드 한 사진의 다운로드 가능한 url 주소로 completion 실행
-            storageRef.downloadURL { url, error in
-                guard let profileImageUrl = url?.absoluteString else { return }
 
-                //🔥 2. 회원가입 (Firebase Auth)
-                Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                    if let error {
-                        print("DEBUG: 회원가입 에러 - \(error.localizedDescription)")
-                        return
-                    }
-
-                    // 회원가입에 성공한 user의 uid값
-                    guard let uid = result?.user.uid else { return }
-                    let values = ["email": email,
-                        "username": username,
-                        "fullname": fullname,
-                        "profileImageUrl": profileImageUrl]
-                    let ref = REF_USERS.child(uid) // Firebase RealtimeDB reference
-
-                    //🔥 3. 회원 정보 저장 (Firebase RealtimeDB)
-                    ref.updateChildValues(values) { error, ref in
-                        print("DEBUG: 성공적으로 회원 정보 저장 완료")
-                    }
-                }
-            }
+        let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
+        AuthService.registerUser(withCredentials: credentials) { error, ref in
+            // ⭐️ 회원가입 완료 후 dismiss 하기 전에 configureUI를 실행.
+            guard let tab = keyWindow?.rootViewController as? MainTabController else { return }
+            tab.authenticateUserAndConfigureUI()
+            
+            self.dismiss(animated: true)
         }
 
 
