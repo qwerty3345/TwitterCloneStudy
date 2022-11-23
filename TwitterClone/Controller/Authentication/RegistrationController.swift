@@ -123,7 +123,8 @@ final class RegistrationController: UIViewController {
             passwordContainerView.shake()
             return
         }
-        guard let username = usernameTextField.text, !username.isEmpty else {
+        // username은 항상 소문자로 처리
+        guard let username = usernameTextField.text?.lowercased(), !username.isEmpty else {
             usernameContainerView.shake()
             return
         }

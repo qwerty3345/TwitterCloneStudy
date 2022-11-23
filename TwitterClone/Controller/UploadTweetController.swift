@@ -70,12 +70,22 @@ final class UploadTweetController: UIViewController {
         dismiss(animated: true)
     }
 
-    @objc func handleUploadTweet() {
-        print("tweet!")
-    }
-
 
     // MARK: - API
+    
+    @objc func handleUploadTweet() {
+        guard let caption = captionTextView.text else { return }
+        TweetService.uploadTweet(caption: caption) { error, ref in
+            if let error {
+                print("DEBUG: 트윗 업로드 에러 - \(error.localizedDescription)")
+                return
+            }
+            
+            self.dismiss(animated: true)
+        }
+    }
+
+    
 
     // MARK: - Helpers
 

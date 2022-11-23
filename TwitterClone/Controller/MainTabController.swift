@@ -117,7 +117,8 @@ final class MainTabController: UITabBarController {
     /// TabBar의 ViewController 들을 설정
     func configureViewControllers() {
 
-        let feed = templateNavigationController(image: UIImage(named: "home_unselected"), rootViewController: FeedController())
+        let layout = UICollectionViewFlowLayout()
+        let feed = templateNavigationController(image: UIImage(named: "home_unselected"), rootViewController: FeedController(collectionViewLayout: layout))
 
         let explore = templateNavigationController(image: UIImage(named: "search_unselected"), rootViewController: ExploreController())
 
