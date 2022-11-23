@@ -28,7 +28,13 @@ struct ProfileHeaderViewModel {
     
     var followingString: NSAttributedString? { return attributedText(withValue: 0, text: "팔로잉") }
     
+    var actionButtonTitle: String { return user.isCurrentUser ? "프로필 수정" : "팔로우" }
+    
     var profileImageUrl: URL? { return user.profileImageUrl }
+    
+    var username: String { return "@\(user.username)" }
+    
+    var fullname: String { return user.fullname }
     
     init(user: User) {
         self.user = user

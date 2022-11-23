@@ -33,11 +33,15 @@ final class FeedController: UICollectionViewController {
         fetchTweet()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.barStyle = .default   // 상태창 글씨 까맣게 만듬
+    }
+    
     // MARK: - API
     
     func fetchTweet() {
         TweetService.fetchTweets { tweets in
-            print("completion 실행")
             self.tweets = tweets
         }
     }
@@ -103,7 +107,7 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
 extension FeedController: TweetCellDelegate {
     func handleProfileImageTapped(_ cell: TweetCell) {
         guard let user = cell.viewModel?.user else { return }
-        let vc = ProfileController(user: user, collectionViewLayout: UICollectionViewFlowLayout())
+        let vc = ProfileController(user: user)
         navigationController?.pushViewController(vc, animated: true)
     }
     

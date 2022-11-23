@@ -15,12 +15,15 @@ class ProfileController: UICollectionViewController {
     // MARK: - Properties
 
     private let user: User
+    private var tweets = [Tweet]() {
+        didSet { collectionView.reloadData() }
+    }
 
     // MARK: - Lifecycle
 
-    init(user: User, collectionViewLayout layout: UICollectionViewLayout) {
+    init(user: User) {
         self.user = user
-        super.init(collectionViewLayout: layout)
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
     
     required init?(coder: NSCoder) {
@@ -29,8 +32,8 @@ class ProfileController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(user)
         configureCollectionView()
+        fetchTweets()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +42,16 @@ class ProfileController: UICollectionViewController {
         navigationController?.navigationBar.barStyle = .black   // 상태창 글씨 하얗게 만듬
         // 40강) status bar를 지키고 그 밑에서부터 header 의 색상이 들어가는 문제 해결
         collectionView.contentInsetAdjustmentBehavior = .never
+    }
+    
+    // MARK: - API
+    
+    func fetchTweets() {
+        TweetService.fetchTweets(forUser: user) { tweets in
+            print("profile fetch ")
+            self.tweets = tweets
+            print(tweets)
+        }
     }
     
     // MARK: - Helpers
@@ -56,12 +69,12 @@ class ProfileController: UICollectionViewController {
 extension ProfileController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return tweets.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TweetCell
-
+        cell.viewModel = TweetViewModel(tweet: tweets[indexPath.row])
         return cell
     }
 }
@@ -73,6 +86,7 @@ extension ProfileController {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
             withReuseIdentifier: headerIdentifier, for: indexPath) as! ProfileHeader
         header.viewModel = ProfileHeaderViewModel(user: user)
+        header.delegate = self
         return header
     }
 }
@@ -88,4 +102,16 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 120)
     }
+}
+
+// MARK: - ProfileHeaderDelegate
+
+extension ProfileController: ProfileHeaderDelegate {
+    func handleDismissal() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
+    
 }

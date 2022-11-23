@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ProfileHeaderDelegate: AnyObject {
+    func handleDismissal()
+}
+
 class ProfileHeader: UICollectionReusableView {
 
     // MARK: - Properties
@@ -14,6 +18,9 @@ class ProfileHeader: UICollectionReusableView {
     var viewModel: ProfileHeaderViewModel? {
         didSet { configure() }
     }
+    
+    weak var delegate: ProfileHeaderDelegate?
+    
 
     private let filterBar = ProfileFilterView()
 
@@ -60,7 +67,6 @@ class ProfileHeader: UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
-        label.text = "풀 네임"
         return label
     }()
 
@@ -68,7 +74,6 @@ class ProfileHeader: UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .gray
-        label.text = "@유저네임"
         return label
     }()
 
@@ -76,7 +81,6 @@ class ProfileHeader: UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 3
-        label.text = "유저 바이오 텍스트~~~asdasdasdasdasdasdasdasdasdasdasdasdasdasdasd"
         label.textColor = .black
         return label
     }()
@@ -93,7 +97,6 @@ class ProfileHeader: UICollectionReusableView {
         let followTap = UITapGestureRecognizer(target: self, action: #selector(handleFollowingTapped))
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(followTap)
-        label.text = "0 팔로잉"
 
         return label
     }()
@@ -105,7 +108,6 @@ class ProfileHeader: UICollectionReusableView {
         let followTap = UITapGestureRecognizer(target: self, action: #selector(handleFollowersTapped))
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(followTap)
-        label.text = "0 팔로워"
 
         return label
     }()
@@ -166,7 +168,7 @@ class ProfileHeader: UICollectionReusableView {
     // MARK: - Action
 
     @objc func handleDismissal() {
-        print("dismiss click")
+        delegate?.handleDismissal()
     }
 
     @objc func handleEditProfileFollowTapped() {
@@ -187,6 +189,9 @@ class ProfileHeader: UICollectionReusableView {
         followersLabel.attributedText = viewModel?.followersString
         followingLabel.attributedText = viewModel?.followingString
         profileImageView.sd_setImage(with: viewModel?.profileImageUrl)
+        usernameLabel.text = viewModel?.username
+        fullnameLabel.text = viewModel?.fullname
+        editProfileFollowButton.setTitle(viewModel?.actionButtonTitle, for: .normal)
     }
     
 }
