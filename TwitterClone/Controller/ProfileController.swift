@@ -10,7 +10,7 @@ import UIKit
 private let reuseIdentifier = "ProfileTweetCell"
 private let headerIdentifier = "ProfileHeader"
 
-class ProfileController: UICollectionViewController {
+final class ProfileController: UICollectionViewController {
 
     // MARK: - Properties
 
@@ -42,6 +42,12 @@ class ProfileController: UICollectionViewController {
         navigationController?.navigationBar.barStyle = .black   // 상태창 글씨 하얗게 만듬
         // 40강) status bar를 지키고 그 밑에서부터 header 의 색상이 들어가는 문제 해결
         collectionView.contentInsetAdjustmentBehavior = .never
+    }
+    
+    // ⭐️ 51강) 매번 다른 컨트롤러에서 네비게이션바 숨김설정을 해제해주는 비효율성 해결
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.barStyle = .default   // 상태창 글씨 까맣게 만듬
     }
     
     // MARK: - API

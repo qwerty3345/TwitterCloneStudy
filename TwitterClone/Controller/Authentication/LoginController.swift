@@ -56,7 +56,7 @@ final class LoginController: UIViewController {
     }()
     
     private let dontHaveAccountButton: UIButton = {
-        let button = Utils().attributedButton("계정이 없으십니까? ", "회원가입")
+        let button = Utils().attributedTextButton(firstPlainText: "계정이 없으십니까? ", secondBoldText: "회원가입")
         button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         return button
     }()
@@ -73,7 +73,6 @@ final class LoginController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Timer.shared.endTimer()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

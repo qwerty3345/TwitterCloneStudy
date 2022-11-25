@@ -33,10 +33,6 @@ final class FeedController: UICollectionViewController {
         fetchTweet()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.barStyle = .default   // 상태창 글씨 까맣게 만듬
-    }
     
     // MARK: - API
     
@@ -58,7 +54,6 @@ final class FeedController: UICollectionViewController {
         imageView.setDimensions(width: 44, height: 44)
         navigationItem.titleView = imageView
         
-       
     }
 
     /// 네비게이션바에 유저 프로필 이미지 삽입

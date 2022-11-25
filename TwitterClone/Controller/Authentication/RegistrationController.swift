@@ -28,22 +28,26 @@ final class RegistrationController: UIViewController {
     }()
 
     private lazy var emailContainerView: UIView = {
-        let view = Utils().inputContainerView(withImage: UIImage(named: "mail"), textField: emailTextField)
+        let view = Utils().inputContainerView(withImage: UIImage(named: "mail"),
+            textField: emailTextField)
         return view
     }()
 
     private lazy var passwordContainerView: UIView = {
-        let view = Utils().inputContainerView(withImage: UIImage(named: "ic_lock_outline_white_2x"), textField: passwordTextField)
+        let view = Utils().inputContainerView(withImage: UIImage(named: "ic_lock_outline_white_2x"),
+            textField: passwordTextField)
         return view
     }()
 
     private lazy var fullnameContainerView: UIView = {
-        let view = Utils().inputContainerView(withImage: UIImage(named: "ic_person_outline_white_2x"), textField: fullnameTextField)
+        let view = Utils().inputContainerView(withImage: UIImage(named: "ic_person_outline_white_2x"),
+            textField: fullnameTextField)
         return view
     }()
 
     private lazy var usernameContainerView: UIView = {
-        let view = Utils().inputContainerView(withImage: UIImage(named: "ic_person_outline_white_2x"), textField: usernameTextField)
+        let view = Utils().inputContainerView(withImage: UIImage(named: "ic_person_outline_white_2x"),
+            textField: usernameTextField)
         return view
     }()
 
@@ -82,7 +86,7 @@ final class RegistrationController: UIViewController {
     }()
 
     private let alreadyHaveAccountButton: UIButton = {
-        let button = Utils().attributedButton("이미 계정이 있습니까? ", "로그인")
+        let button = Utils().attributedTextButton(firstPlainText: "이미 계정이 있습니까? ", secondBoldText: "로그인")
         button.addTarget(self, action: #selector(handleShowSignIn), for: .touchUpInside)
         return button
     }()
@@ -134,13 +138,12 @@ final class RegistrationController: UIViewController {
         }
 
 
-
         let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
         AuthService.registerUser(withCredentials: credentials) { error, ref in
             // ⭐️ 회원가입 완료 후 dismiss 하기 전에 configureUI를 실행.
             guard let tab = keyWindow?.rootViewController as? MainTabController else { return }
             tab.authenticateUserAndConfigureUI()
-            
+
             self.dismiss(animated: true)
         }
 

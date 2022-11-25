@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 struct TweetService {
+    /// 트윗 게시글 업로드
     static func uploadTweet(caption: String, completion: @escaping (Error?, DatabaseReference) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
@@ -28,6 +29,7 @@ struct TweetService {
 
     }
 
+    /// 트윗 게시글들 가져오기
     static func fetchTweets(completion: @escaping ([Tweet]) -> Void) {
         var tweets = [Tweet]()
 
@@ -47,6 +49,7 @@ struct TweetService {
         }
     }
 
+    /// 특정 유저의 트윗 게시글들 가져오기
     static func fetchTweets(forUser user: User, completion: @escaping ([Tweet]) -> Void) {
         var tweets = [Tweet]()
 

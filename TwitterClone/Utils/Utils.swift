@@ -42,10 +42,10 @@ struct Utils {
     }
     
     /// 첫 파라미터로 기본 텍스트, 두번째 파라미터로 볼드 효과가 있는 텍스트를 받아서 텍스트 형태 버튼 생성
-    func attributedButton(_ firstPart: String, _ secondPart: String) -> UIButton {
+    func attributedTextButton(firstPlainText: String, secondBoldText: String) -> UIButton {
         let button = UIButton(type: .system)
-        let attrString = NSMutableAttributedString(string: firstPart, attributes: [.font: UIFont.systemFont(ofSize: 16)])
-        attrString.append(NSAttributedString(string: secondPart, attributes: [.font: UIFont.boldSystemFont(ofSize: 16)]))
+        let attrString = NSMutableAttributedString(string: firstPlainText, attributes: [.font: UIFont.systemFont(ofSize: 16)])
+        attrString.append(NSAttributedString(string: secondBoldText, attributes: [.font: UIFont.boldSystemFont(ofSize: 16)]))
         button.setAttributedTitle(attrString, for: .normal)
         button.setTitleColor(.white, for: .normal)
         return button

@@ -31,4 +31,18 @@ struct UserService {
             completion(user)
         }
     }
+    
+    /// 모든 user들을 가져옴.
+    static func fetchUsers(completion: @escaping (([User]) -> Void)) {
+        var users = [User]()
+        REF_USERS.observe(.childAdded) { snapshot in
+            let uid = snapshot.key
+            guard let dict = snapshot.value as? [String: AnyObject] else { return }
+            
+            let user = User(uid: uid, dict: dict)
+            users.append(user)
+            // TODO: 동일하게 completion 여러번 실행되는 문제ㅠㅠ
+            completion(users)
+        }
+    }
 }
