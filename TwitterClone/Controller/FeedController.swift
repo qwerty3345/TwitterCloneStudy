@@ -54,6 +54,7 @@ final class FeedController: UICollectionViewController {
         imageView.setDimensions(width: 44, height: 44)
         navigationItem.titleView = imageView
         
+        
     }
 
     /// 네비게이션바에 유저 프로필 이미지 삽입
@@ -86,6 +87,11 @@ extension FeedController {
         cell.viewModel = TweetViewModel(tweet: tweets[indexPath.row])
         cell.delegate = self
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = TweetController(tweet: tweets[indexPath.row])
+        navigationController?.pushViewController(controller, animated: true)
     }
 
     

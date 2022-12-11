@@ -24,7 +24,7 @@ struct TweetService {
         REF_TWEETS.childByAutoId().updateChildValues(values) { err, ref in
             guard let tweetID = ref.key else { return }
             // 2.🔥 user-tweets DB에 업로드한 유저의 uid 내부에 tweetID 저장 (user-feed 목록을 쉽게 불러오기 위해)
-            REF_USER_TWEETS.child(uid).updateChildValues([tweetID: 0], withCompletionBlock: completion)
+            REF_USER_TWEETS.child(uid).updateChildValues([tweetID: 1], withCompletionBlock: completion)
         }
 
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 
+// TODO: 하드 코딩 방식 변경 (protocol extension으로)
 private let reuseIdentifier = "ProfileFilterCell"
 
 protocol ProfileFilterViewDelegate: AnyObject {

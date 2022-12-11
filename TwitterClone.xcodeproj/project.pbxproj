@@ -32,6 +32,8 @@
 		B4345D16292E177500D97BA1 /* ProfileFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4345D15292E177500D97BA1 /* ProfileFilterCell.swift */; };
 		B4345D18292E235C00D97BA1 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4345D17292E235C00D97BA1 /* ProfileHeaderViewModel.swift */; };
 		B4700D102930FFB400562F7B /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4700D0F2930FFB400562F7B /* UserCell.swift */; };
+		B496EB0829449E2F0066E46A /* TweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B496EB0729449E2F0066E46A /* TweetController.swift */; };
+		B496EB0A2944A2880066E46A /* TweetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B496EB092944A2880066E46A /* TweetHeader.swift */; };
 		B49E9F2D292BBD500092EC13 /* UploadTweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E9F2C292BBD500092EC13 /* UploadTweetController.swift */; };
 		B49E9F2F292BCB850092EC13 /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E9F2E292BCB850092EC13 /* CaptionTextView.swift */; };
 		B4AC1975292CF816004B6B00 /* TweetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1974292CF816004B6B00 /* TweetService.swift */; };
@@ -69,6 +71,8 @@
 		B4345D15292E177500D97BA1 /* ProfileFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterCell.swift; sourceTree = "<group>"; };
 		B4345D17292E235C00D97BA1 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
 		B4700D0F2930FFB400562F7B /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		B496EB0729449E2F0066E46A /* TweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetController.swift; sourceTree = "<group>"; };
+		B496EB092944A2880066E46A /* TweetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetHeader.swift; sourceTree = "<group>"; };
 		B49E9F2C292BBD500092EC13 /* UploadTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetController.swift; sourceTree = "<group>"; };
 		B49E9F2E292BCB850092EC13 /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
 		B4AC1974292CF816004B6B00 /* TweetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService.swift; sourceTree = "<group>"; };
@@ -139,13 +143,13 @@
 			isa = PBXGroup;
 			children = (
 				B423BF7B2928871200B94D9A /* Authentication */,
-				B40A9BEE2927C3DC00EDD72B /* MainTabController.swift */,
 				B40A9BF02927C4F600EDD72B /* FeedController.swift */,
 				B40A9BF22927C52000EDD72B /* ExploreController.swift */,
 				B40A9BF42927C52C00EDD72B /* NotificationController.swift */,
 				B40A9BF62927C54100EDD72B /* ConversationController.swift */,
 				B49E9F2C292BBD500092EC13 /* UploadTweetController.swift */,
 				B4345D0F292DD2AF00D97BA1 /* ProfileController.swift */,
+				B496EB0729449E2F0066E46A /* TweetController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -159,6 +163,7 @@
 				B4345D13292E15E000D97BA1 /* ProfileFilterView.swift */,
 				B4345D15292E177500D97BA1 /* ProfileFilterCell.swift */,
 				B4700D0F2930FFB400562F7B /* UserCell.swift */,
+				B496EB092944A2880066E46A /* TweetHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 			children = (
 				B423BF7C2928872100B94D9A /* LoginController.swift */,
 				B423BF802928C0ED00B94D9A /* RegistrationController.swift */,
+				B40A9BEE2927C3DC00EDD72B /* MainTabController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -343,6 +349,7 @@
 				B40A9BF32927C52000EDD72B /* ExploreController.swift in Sources */,
 				B40A9BD72927C26D00EDD72B /* SceneDelegate.swift in Sources */,
 				B423BF7D2928872100B94D9A /* LoginController.swift in Sources */,
+				B496EB0829449E2F0066E46A /* TweetController.swift in Sources */,
 				B4345D10292DD2AF00D97BA1 /* ProfileController.swift in Sources */,
 				B4345D12292DEA5800D97BA1 /* ProfileHeader.swift in Sources */,
 				B4AC1979292D085B004B6B00 /* TweetCell.swift in Sources */,
@@ -354,6 +361,7 @@
 				B423BF812928C0ED00B94D9A /* RegistrationController.swift in Sources */,
 				B40A9BEF2927C3DC00EDD72B /* MainTabController.swift in Sources */,
 				B40A9BF72927C54100EDD72B /* ConversationController.swift in Sources */,
+				B496EB0A2944A2880066E46A /* TweetHeader.swift in Sources */,
 				B4AC197B292D1819004B6B00 /* TweetViewModel.swift in Sources */,
 				B40A9BF12927C4F600EDD72B /* FeedController.swift in Sources */,
 				B40A9BF92927C65C00EDD72B /* Extensions.swift in Sources */,
@@ -506,8 +514,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -539,8 +549,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

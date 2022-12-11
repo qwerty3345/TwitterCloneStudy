@@ -9,6 +9,7 @@ import UIKit
 
 protocol ProfileHeaderDelegate: AnyObject {
     func handleDismissal()
+    func handleEditProfileFollow(_ header: ProfileHeader)
 }
 
 class ProfileHeader: UICollectionReusableView {
@@ -18,9 +19,9 @@ class ProfileHeader: UICollectionReusableView {
     var viewModel: ProfileHeaderViewModel? {
         didSet { configure() }
     }
-    
+
     weak var delegate: ProfileHeaderDelegate?
-    
+
 
     private let filterBar = ProfileFilterView()
 
@@ -172,7 +173,11 @@ class ProfileHeader: UICollectionReusableView {
     }
 
     @objc func handleEditProfileFollowTapped() {
+        
+        // ⭐️ 함수의 중복 호출 방지. UI 업데이트 후, CollectionView의 reloadData 가 실행되니 Header의 configure에서 true로 지정!
+        self.isUserInteractionEnabled = false
 
+        delegate?.handleEditProfileFollow(self)
     }
 
     @objc func handleFollowingTapped() {
@@ -184,7 +189,7 @@ class ProfileHeader: UICollectionReusableView {
     }
 
     // MARK: - Helpers
-    
+
     func configure() {
         followersLabel.attributedText = viewModel?.followersString
         followingLabel.attributedText = viewModel?.followingString
@@ -192,8 +197,12 @@ class ProfileHeader: UICollectionReusableView {
         usernameLabel.text = viewModel?.username
         fullnameLabel.text = viewModel?.fullname
         editProfileFollowButton.setTitle(viewModel?.actionButtonTitle, for: .normal)
+        editProfileFollowButton.setTitleColor(viewModel?.actionButtonTextColor, for: .normal)
+        editProfileFollowButton.backgroundColor = viewModel?.actionButtonBackgroundColor
+        
+        self.isUserInteractionEnabled = true
     }
-    
+
 }
 
 // MARK: - ProfileFilterViewDelegate

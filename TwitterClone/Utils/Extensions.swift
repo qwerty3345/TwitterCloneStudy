@@ -103,19 +103,20 @@ extension UIColor {
     }
 
     static let twitterBlue = UIColor.rgb(red: 29, green: 161, blue: 242)
+
 }
 
-//extension UIImageView {
-//    func setImage(withUrl url: URL?) {
-//        DispatchQueue.global().async { [weak self] in
-//            guard let url else { return }
-//            guard let data = try? Data(contentsOf: url) else { return }
-//            guard let image = UIImage(data: data) else { return }
-//            
-//            DispatchQueue.main.async {
-//                self?.image = image
-//            }
-//
-//        }
-//    }
-//}
+extension UIImageView {
+    func setImage(withUrl url: URL?) {
+        DispatchQueue.global().async { [weak self] in
+            guard let url else { return }
+            guard let data = try? Data(contentsOf: url) else { return }
+            guard let image = UIImage(data: data) else { return }
+
+            DispatchQueue.main.async {
+                self?.image = image
+            }
+
+        }
+    }
+}
